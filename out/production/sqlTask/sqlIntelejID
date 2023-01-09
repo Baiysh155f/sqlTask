@@ -1,0 +1,119 @@
+CREATE TABLE country
+(
+    id   SERIAL PRIMARY KEY,
+    city VARCHAR
+);
+INSERT INTO country(city)
+VALUES ('BISHKEK'),
+       ('OSH'),
+       ('BATKEN');
+select *
+from country;
+select *
+from apple_phone;
+CREATE TABLE apple_phone
+(
+    id           SERIAL PRIMARY KEY,
+    model        VARCHAR UNIQUE,
+    date_of_year DATE,
+    country_id   INT REFERENCES country (id)
+);
+INSERT INTO apple_phone(model, date_of_year, country_id)
+VALUES ('iphone 11 pro', '2022-1-20', 1),
+       ('iphone 11 pro max', '2023-3-23', 3),
+       ('iphone 13 pro max', '2022-4-22', 2);
+CREATE TABLE car
+(
+    id    SERIAL PRIMARY KEY,
+    marca VARCHAR,
+    color VARCHAR,
+    year  DATE
+);
+INSERT INTO car(marca, color, year)
+VALUES ('BMW', 'black', '2000-1-23'),
+       ('Mercedes-benz', 'blue', '2010-11-22'),
+       ('Toyota camry', 'space gray', '2005-5-20');
+CREATE TABLE farm
+(
+    id           SERIAL PRIMARY KEY,
+    name         VARCHAR,
+    country_id   INT REFERENCES country (id),
+    employees_id INT REFERENCES employees (id)
+);
+
+INSERT INTO farm(name, country_id, employees_id)
+VALUES ('APPLE', 1, 1);
+
+CREATE TABLE employees
+(
+    id         SERIAL PRIMARY KEY,
+    first_name VARCHAR,
+    last_name  VARCHAR,
+    profession VARCHAR,
+    year       DATE,
+    email      VARCHAR UNIQUE
+);
+
+INSERT INTO employees(first_name, last_name, profession, year, email)
+VALUES ('Baiysh', 'Orozaliev', 'founder', '2000-01-20', 'baiysh.@gmail.com'),
+       ('Kylych', 'Orozaliev', 'leader', '1990-03-23', 'kylych@gmail.com'),
+       ('janysh', 'Orozaliev', 'menger', '1985-11-21', 'janysh@gmail.com');
+
+CREATE TABLE peaksoft
+(
+    id             SERIAL PRIMARY KEY,
+    founder        VARCHAR,
+    instructors_id INT REFERENCES instructors (id),
+    mentors_id     INT REFERENCES mentors (id),
+    students_id    INT REFERENCES students (id)
+);
+drop table peaksoft;
+INSERT INTO peaksoft(founder, instructors_id, mentors_id, students_id)
+VALUES ('Esen Niazov',1,2,3);
+
+CREATE TABLE instructors
+(
+    id        SERIAL PRIMARY KEY,
+    full_name VARCHAR,
+    course_id INT REFERENCES course (id)
+);
+
+INSERT INTO instructors(full_name, course_id)
+VALUES ('Ayjamal Asangazieva', 1);
+
+CREATE TABLE mentors
+(
+    id        SERIAL PRIMARY KEY,
+    full_name VARCHAR,
+    course_id INT REFERENCES course (id)
+);
+INSERT INTO mentors(full_name, course_id)
+VALUES ('Muhammed Toichubay uulu', 1),
+       ('Rahim Bazarbay uulu', 2);
+
+CREATE TABLE students
+(
+    id         SERIAL PRIMARY KEY,
+    full_name  VARCHAR,
+    email      VARCHAR UNIQUE,
+    courses_id INT REFERENCES course (id)
+);
+
+INSERT INTO students(full_name, email, courses_id)
+VALUES ('Baiysh Orozaliev', 'baiysh@gmail.com', 2),
+       ('Bektursun Baymamatov', 'bektursun@gmail.com', 4),
+       ('Zayloodin Tilebaldiev', 'zaylooodin@gmail.com', 3),
+       ('Asan Zulpukarov', 'asan@gmail.com', 1);
+
+CREATE TABLE course
+(
+    id                 SERIAL PRIMARY KEY,
+    name               VARCHAR,
+    online_end_offline VARCHAR
+);
+
+INSERT INTO course (name, online_end_offline)
+VALUES ('Java', 'online'),
+       ('Java', 'offline'),
+       ('Js', 'online'),
+       ('Js', 'offline');

@@ -1,0 +1,120 @@
+CREATE TABLE products
+(
+	id SERIAL PRIMARY KEY ,
+	vegetable_id INT REFERENCES vegetable(id) ,
+	juices_id INT REFERENCES juices(id),
+	cakes_id INT REFERENCES cakes(id),
+	chocolates_id INT REFERENCES chocolates(id),
+	salads_id INT REFERENCES salads(id),
+	dishes_id INT REFERENCES dishes(id),
+	fast_food_id INT REFERENCES fast_food(id),
+	biscuit_id INT REFERENCES biscuit(id),
+	sauces_id INT REFERENCES sauces(id),
+	sweets_id INT REFERENCES sweets(id)
+);
+
+CREATE TABLE vegetable
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+
+INSERT INTO vegetable (name)
+VALUES ('broccoli'),
+       ('coulifolower'),
+       ('potato');
+CREATE TABLE juices
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+
+INSERT INTO juices (name)
+VALUES ('coktails'),
+('hard soda'),
+('orange juice');
+
+CREATE TABLE cakes
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+
+INSERT INTO cakes (name)
+VALUES ('blackout cake'),
+('cheesecake'),
+('birthday cake');
+
+CREATE TABLE chocolates
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+
+INSERT INTO chocolates(name)
+VALUES ('milk choklate'),
+('white chocolate'),
+('dark chocolate');
+
+CREATE TABLE salads
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+
+INSERT INTO salads(name)
+VALUES ('cobb salads'),
+('coleslaw'),
+('cookie salads');
+
+CREATE TABLE dishes
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+
+INSERT INTO dishes (name)
+VALUES ('ice cream'),
+('steak'),
+('roast chicken');
+
+CREATE TABLE fast_food
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+INSERT INTO fast_food(name)
+VALUES ('hamburger'),
+('sandwich'),
+('pizza');
+
+CREATE TABLE biscuit
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+INSERT INTO biscuit(name)
+VALUES ('benne wafer'),
+('oreo'),
+('oatmeal raisin');
+
+CREATE TABLE sauces
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+INSERT INTO sauces(name)
+VALUES ('red chilli'),
+('fenugreeek'),
+('bay leaf');
+
+CREATE TABLE sweets
+(
+	id SERIAL PRIMARY KEY ,
+	name VARCHAR UNIQUE
+);
+
+INSERT INTO sweets (name)
+VALUES('toffe'),
+('donut'),
+('lollipop');
